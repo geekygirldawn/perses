@@ -4,6 +4,7 @@ builds:
     binary: "perses"
     goos:
       - linux
+      - windows
     goarch:
       - amd64
     env:
