@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     branches:
-      - main
+      - '**'
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+*"
 jobs:
@@ -86,7 +86,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.17.x
+          go-version: 1.18.x
       - uses: actions/cache@v2
         with:
           path: ~/go/pkg/mod
@@ -110,7 +110,7 @@ jobs:
         ## This step will only run when a pull request is opened or when there is a push on the main branch.
         ## It will build the Go binaries and the docker images.
         uses: goreleaser/goreleaser-action@v2
-        if: ${{ github.event_name == 'pull_request' || github.ref_name == 'main' }}
+        if: ${{ github.event_name == 'pull_request' || !startsWith(github.ref_name, 'v') }}
         with:
           distribution: goreleaser
           version: latest
