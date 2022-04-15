@@ -99,7 +99,10 @@ interface LineChartProps {
 
 export function LineChart(props: LineChartProps) {
   const { height, data, grid, legend, toolbox, dataZoomEnabled, onDataZoom } = props;
-  const theme = useTheme();
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  const theme: any = useTheme();
+  console.log(theme);
+
   const chartRef = useRef<EChartsInstance>();
   const [showTooltip, setShowTooltip] = useState<boolean>(true);
 
@@ -274,6 +277,7 @@ export function LineChart(props: LineChartProps) {
           height: '100%',
         }}
         option={option}
+        theme={theme.chart}
         onEvents={handleEvents}
         _instance={chartRef}
       />

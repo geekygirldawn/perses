@@ -120,6 +120,8 @@ export type OnEventsType<T> = {
 
 export interface EChartsProps<T> {
   option: EChartsCoreOption;
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  theme?: string | any;
   sx?: SxProps<Theme>;
   onChartInitialized?: (instance: ECharts) => void;
   onEvents?: OnEventsType<T>;
@@ -127,14 +129,16 @@ export interface EChartsProps<T> {
   parentContainer?: HTMLDivElement | null;
 }
 
-export function ECharts<T>({ sx, _instance, onChartInitialized, option, onEvents }: EChartsProps<T>) {
+export function ECharts<T>({ sx, _instance, onChartInitialized, option, onEvents, theme }: EChartsProps<T>) {
   const [containerRef, setContainerRef] = useState<HTMLDivElement | null>(null);
   const [echart, setChart] = useState<ECharts | undefined>(undefined);
   // Create a chart instance in the container
   useLayoutEffect(() => {
     if (containerRef === null) return;
 
-    const chart = init(containerRef);
+    // TODO (sjcobb): support passing optional svg renderer
+    const chart = init(containerRef, theme, { renderer: 'canvas' });
+
     setChart(chart);
     if (_instance !== undefined) {
       _instance.current = chart;
@@ -146,7 +150,7 @@ export function ECharts<T>({ sx, _instance, onChartInitialized, option, onEvents
     return () => {
       chart.dispose();
     };
-  }, [containerRef, _instance, onChartInitialized, onEvents]);
+  }, [containerRef, _instance, onChartInitialized, onEvents, theme]);
 
   // Sync options with chart instance
   useLayoutEffect(() => {
