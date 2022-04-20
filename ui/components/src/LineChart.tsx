@@ -42,6 +42,7 @@ import { PROGRESSIVE_MODE_SERIES_LIMIT, EChartsDataFormat } from './model/graph-
 import { abbreviateLargeNumber } from './model/units';
 import { emptyTooltipData } from './tooltip/tooltip-model';
 import { Tooltip } from './tooltip/Tooltip';
+import { getChartTheme } from './utils/theme-gen';
 
 use([
   EChartsLineChart,
@@ -99,9 +100,9 @@ interface LineChartProps {
 
 export function LineChart(props: LineChartProps) {
   const { height, data, grid, legend, toolbox, dataZoomEnabled, onDataZoom } = props;
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  const theme: any = useTheme();
-  console.log(theme);
+  const theme = useTheme();
+  const chartTheme = getChartTheme(theme);
+  console.log('LineChart -> chartTheme: ', chartTheme);
 
   const chartRef = useRef<EChartsInstance>();
   const [showTooltip, setShowTooltip] = useState<boolean>(true);
@@ -162,16 +163,16 @@ export function LineChart(props: LineChartProps) {
 
     const showPointsOnHover = data.timeSeries.length < PROGRESSIVE_MODE_SERIES_LIMIT;
 
-    const defaultGrid = {
-      show: true,
-      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.background.paper,
-      borderColor: theme.palette.grey['300'],
-      top: 10,
-      right: 20,
-      bottom: 0,
-      left: 20,
-      containLabel: true,
-    };
+    // const defaultGrid = {
+    //   show: true,
+    //   backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.background.paper,
+    //   borderColor: theme.palette.grey['300'],
+    //   top: 10,
+    //   right: 20,
+    //   bottom: 0,
+    //   left: 20,
+    //   containLabel: true,
+    // };
 
     const defaultToolbox = {
       show: true,
@@ -202,7 +203,7 @@ export function LineChart(props: LineChartProps) {
       title: {
         show: false,
       },
-      grid: merge(defaultGrid, grid),
+      grid,
       toolbox: merge(defaultToolbox, toolbox),
       series: data.timeSeries,
       xAxis: {
@@ -277,7 +278,8 @@ export function LineChart(props: LineChartProps) {
           height: '100%',
         }}
         option={option}
-        theme={theme.chart}
+        theme={chartTheme}
+        // theme={theme.chart}
         onEvents={handleEvents}
         _instance={chartRef}
       />
