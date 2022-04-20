@@ -57,7 +57,7 @@ export function getChartTheme(muiTheme: MaterialThemeOptions) {
         margin: 12,
       },
       axisTick: {
-        show: true,
+        show: false,
         length: 6,
         lineStyle: {
           color: mdGrey,
@@ -70,7 +70,7 @@ export function getChartTheme(muiTheme: MaterialThemeOptions) {
         },
       },
       splitLine: {
-        show: true,
+        show: false,
         lineStyle: {
           color: [ltGrey],
         },
@@ -98,6 +98,23 @@ export function getChartTheme(muiTheme: MaterialThemeOptions) {
         },
       },
     },
+    legend: {
+      textStyle: {
+        color: muiTheme.palette.text?.primary,
+      },
+    },
+    tooltip: {},
+    // line: {
+    //   itemStyle: {
+    //     borderWidth: 1,
+    //   },
+    //   lineStyle: {
+    //     width: 2,
+    //   },
+    //   symbolSize: 4,
+    //   symbol: 'circle',
+    //   smooth: false,
+    // },
   };
 
   // console.log('getChartsTheme -> chartTheme: ', chartTheme);

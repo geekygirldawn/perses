@@ -210,19 +210,8 @@ export function LineChart(props: LineChartProps) {
         type: 'category',
         data: data.xAxis,
         axisLabel: {
-          color: theme.palette.text.primary,
-          margin: 12,
           formatter: (value: number) => {
             return getFormattedDate(value);
-          },
-        },
-        axisTick: {
-          show: true,
-          length: 6,
-        },
-        axisLine: {
-          lineStyle: {
-            color: theme.palette.grey['600'],
           },
         },
       },
@@ -232,14 +221,8 @@ export function LineChart(props: LineChartProps) {
         axisLabel: {
           showMinLabel: false,
           showMaxLabel: true,
-          color: theme.palette.text.primary,
           formatter: (value: number) => {
             return abbreviateLargeNumber(value);
-          },
-        },
-        splitLine: {
-          lineStyle: {
-            color: theme.palette.grey['300'],
           },
         },
       },
