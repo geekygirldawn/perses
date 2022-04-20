@@ -163,35 +163,13 @@ export function LineChart(props: LineChartProps) {
 
     const showPointsOnHover = data.timeSeries.length < PROGRESSIVE_MODE_SERIES_LIMIT;
 
-    // const defaultGrid = {
-    //   show: true,
-    //   backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.background.paper,
-    //   borderColor: theme.palette.grey['300'],
-    //   top: 10,
-    //   right: 20,
-    //   bottom: 0,
-    //   left: 20,
-    //   containLabel: true,
-    // };
-
     const defaultToolbox = {
-      show: true,
-      top: 10,
-      right: 10,
-      iconStyle: {
-        borderColor: theme.palette.text.primary,
-      },
       feature: {
         dataZoom: {
           icon: dataZoomEnabled ? null : undefined,
           yAxisIndex: 'none',
         },
         restore: {},
-      },
-      emphasis: {
-        iconStyle: {
-          textFill: theme.palette.text.primary,
-        },
       },
     };
 
@@ -239,7 +217,7 @@ export function LineChart(props: LineChartProps) {
     };
 
     return option;
-  }, [data, theme, grid, legend, toolbox, dataZoomEnabled]);
+  }, [data, grid, legend, toolbox, dataZoomEnabled]);
 
   return (
     <Box

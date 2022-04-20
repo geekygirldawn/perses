@@ -93,8 +93,11 @@ export function getChartTheme(muiTheme: MaterialThemeOptions) {
         show: false,
       },
       splitLine: {
+        show: true,
         lineStyle: {
+          width: 0.5,
           color: ltGrey,
+          opacity: 0.9,
         },
       },
     },
@@ -103,18 +106,41 @@ export function getChartTheme(muiTheme: MaterialThemeOptions) {
         color: muiTheme.palette.text?.primary,
       },
     },
+    toolbox: {
+      show: true,
+      top: 10,
+      right: 10,
+      iconStyle: {
+        borderColor: muiTheme.palette.text?.primary,
+      },
+      emphasis: {
+        iconStyle: {
+          textFill: muiTheme.palette.text?.primary,
+        },
+      },
+    },
     tooltip: {},
-    // line: {
-    //   itemStyle: {
-    //     borderWidth: 1,
-    //   },
-    //   lineStyle: {
-    //     width: 2,
-    //   },
-    //   symbolSize: 4,
-    //   symbol: 'circle',
-    //   smooth: false,
-    // },
+    line: {
+      showSymbol: false,
+      symbol: 'circle',
+      symbolSize: 4,
+      smooth: false,
+      lineStyle: {
+        width: 1.5,
+      },
+      emphasis: {
+        lineStyle: {
+          width: 2,
+        },
+      },
+    },
+    bar: {
+      barMaxWidth: 150,
+      itemStyle: {
+        barBorderWidth: 0,
+        barBorderColor: ltGrey,
+      },
+    },
   };
 
   // console.log('getChartsTheme -> chartTheme: ', chartTheme);

@@ -66,8 +66,6 @@ export function LineChartContainer(props: LineChartContainerProps) {
           name: dataSeries.name,
           color: getRandomColor(dataSeries.name),
           data: yValues,
-          showSymbol: false,
-          symbol: 'circle',
           sampling: 'lttb', // use Largest-Triangle-Three-Bucket algorithm to filter points
           progressiveThreshold: OPTIMIZED_MODE_SERIES_LIMIT,
         });
