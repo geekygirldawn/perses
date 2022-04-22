@@ -102,7 +102,6 @@ export function LineChart(props: LineChartProps) {
   const { height, data, grid, legend, toolbox, dataZoomEnabled, onDataZoom } = props;
   const theme = useTheme();
   const chartTheme = getChartTheme(theme);
-  console.log('LineChart -> chartTheme: ', chartTheme);
 
   const chartRef = useRef<EChartsInstance>();
   const [showTooltip, setShowTooltip] = useState<boolean>(true);
@@ -240,7 +239,6 @@ export function LineChart(props: LineChartProps) {
         }}
         option={option}
         theme={chartTheme}
-        // theme={theme.chart}
         onEvents={handleEvents}
         _instance={chartRef}
       />

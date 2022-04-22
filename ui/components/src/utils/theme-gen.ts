@@ -19,12 +19,7 @@ import { ThemeOptions as MaterialThemeOptions } from '@mui/material';
  * https://github.com/prometheus/prometheus/tree/main/web/ui/react-app/src/pages/graph
  */
 
-// TODO (sjcobb): figure out ECharts theme approach
-// - don't actually need two ECharts themes since it can be 'generated' from theme primary and secondary colors
-
 export function getChartTheme(muiTheme: MaterialThemeOptions) {
-  console.log('getChartsTheme -> muiTheme: ', muiTheme);
-
   if (muiTheme.palette === undefined) return;
   // if (muiTheme.palette === undefined || muiTheme.palette.grey === undefined) return;
 
@@ -33,15 +28,11 @@ export function getChartTheme(muiTheme: MaterialThemeOptions) {
   const mdGrey = muiTheme.palette.grey ? muiTheme.palette.grey['600'] : '#545454';
 
   const chartTheme = {
-    // // backgroundColor: muiTheme.palette?.background?.paper ?? 'transparent', // includes axis labels
     // backgroundColor: muiTheme.palette?.background?.default ?? 'transparent', // includes axis labels
-    // // backgroundColor: '#FF0000', // red
     grid: {
       show: true,
-      // backgroundColor: muiTheme.palette.background?.default ?? 'transparent', // canvas excluding axis labels
+      // backgroundColor: muiTheme.palette.background?.default ?? 'transparent',
       backgroundColor: muiTheme.palette.background?.paper ?? 'transparent', // canvas excluding axis labels
-      // backgroundColor: '#FFFF00', // yellow
-      // borderColor: ltGrey,
       borderColor: 'transparent',
       top: 10,
       right: 20,
@@ -143,6 +134,5 @@ export function getChartTheme(muiTheme: MaterialThemeOptions) {
     },
   };
 
-  // console.log('getChartsTheme -> chartTheme: ', chartTheme);
   return chartTheme;
 }
